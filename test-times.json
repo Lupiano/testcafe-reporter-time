@@ -1,0 +1,18 @@
+{
+    "threshold": 15000,
+    
+    "First test in first fixture": 10,
+    "Second test in first fixture": 20,
+    "Third test in first fixture": 200000,
+
+    "First test in second fixture": 10,
+    "Second test in second fixture": 70000,
+    "Third test in second fixture": 200000,
+
+    "First test in third fixture": 70000,
+
+    "TC 24783: Creates an Expense" : 1000,
+    "TC 24784: Creates a Report": 1000,
+    "TC 25146: Creates a Project Code": 1000
+}
+
