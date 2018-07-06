@@ -1,8 +1,8 @@
 {
-  "name": "testcafe-reporter-time-performance",
+  "name": "testcafe-reporter-time",
   "version": "1.0.0",
-  "description": "time-performance TestCafe reporter plugin.",
-  "repository": "https://github.com/llistorti/testcafe-reporter-time-performance",
+  "description": "time TestCafe reporter plugin.",
+  "repository": "https://github.com/llistorti/testcafe-reporter-time",
   "author": {
     "name": "Luciano Listorti",
     "email": "llistorti@temperies.com"

@@ -1,5 +1,5 @@
 const FILE_NAME = 'test-times.json'; 
-var THRESHOLD = 30000;
+var THRESHOLD = 30;
 var testTimes = null;
 
 var fs = require('fs');
@@ -27,7 +27,7 @@ export default function () {
             this.testCount = testCount;
 
             if (testTimes && typeof testTimes['threshold'] !== 'undefined')
-                THRESHOLD = testTimes['threshold'];
+                THRESHOLD = this.moment(testTimes['threshold']);
 
             this.setIndent(1)
                 .useWordWrap(true)
@@ -41,7 +41,7 @@ export default function () {
             });
 
             this.newline()
-                .write('Threshold: ' + THRESHOLD + 'ms')
+                .write(`Threshold: ${THRESHOLD}s`)
                 .newline();
         },
 
@@ -97,7 +97,9 @@ export default function () {
             if (testRunInfo.screenshotPath)
                 title += ` (screenshots: ${testRunInfo.screenshotPath})`;
 
-            title += ` (${testRunInfo.durationMs}ms)`;
+            var duration = testRunInfo.durationMs / 1000;
+            
+            title += ` (${duration}s)`;
 
             this.write(title);
 
@@ -111,12 +113,11 @@ export default function () {
             if (!testRunInfo.skipped && !hasErr && testTimes && typeof testTimes[name] !== 'undefined') {
                 
                 var expectedTime = testTimes[name];
-                var durationMs = testRunInfo.durationMs;
 
-                if (durationMs > expectedTime + THRESHOLD || durationMs < expectedTime - THRESHOLD) {
+                if (duration > expectedTime + THRESHOLD || duration < expectedTime - THRESHOLD) {
                     var msg;
 
-                    if (durationMs > expectedTime + THRESHOLD)
+                    if (duration > expectedTime + THRESHOLD)
                         msg = 'Duration was more than expected';
                     else
                         msg = 'Duration was less than expected';
@@ -124,7 +125,7 @@ export default function () {
                     this.outOfTimeTests.push({
                         name:         name,
                         expectedTime: expectedTime,
-                        durationMs:   durationMs,
+                        duration:     duration,
                         msg:          msg
                     });
                 }
@@ -159,7 +160,7 @@ export default function () {
                     .write(`- ${test.name}:`)
                     .newline()
                     .setIndent(4)
-                    .write(`Duration: ${test.durationMs}ms (${test.expectedTime}ms expected)`)
+                    .write(`Duration: ${test.duration}s (${test.expectedTime}s expected)`)
                     .newline()
                     .write(`Message: ${test.msg}`)
                     .newline();
