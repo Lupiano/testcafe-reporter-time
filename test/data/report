@@ -1,0 +1,55 @@
+ Running tests in:
+ - Chrome 41.0.2227 / Mac OS X 10.10.1
+ - Firefox 47 / Mac OS X 10.10.1
+
+ Threshold: 15s
+
+ First fixture
+ √ First test in first fixture (unstable) (screenshots:
+ /screenshots/1445437598847) (74s)
+ ✕ Second test in first fixture (screenshots: /screenshots/1445437598847)
+ (74s)
+   Error on page "http://example.org": Some error 
+   The specified selector does not match any element in the DOM tree. 
+ √ Third test in first fixture (74s)
+
+ Second fixture
+ √ First test in second fixture (74s)
+ √ Second test in second fixture (74s)
+ √ Third test in second fixture (0s)
+
+ Third fixture
+ ✕ First test in third fixture (unstable) (74s)
+   - Error in beforeEach hook -
+   The specified selector does not match any element in the DOM tree. 
+
+ 2/6 failed (15m 25s)
+
+ Warnings (3):
+ --
+  Was unable to take a screenshot due to an error.
+
+  ReferenceError: someVar is not defined
+ --
+  Was unable to take a screenshot due to an error.
+
+  ReferenceError: someOtherVar is not defined
+ --
+  Was unable to take screenshots because the screenshot directory is not
+  specified. To specify it, use the "-s" or "--screenshots" command line
+  option or the "screenshots" method of the test runner in case you are using
+  API.
+
+ Out of time tests (4):
+ - First test in first fixture:
+    Duration: 74s (1s expected)
+    Message: Duration was more than expected
+ - Third test in first fixture:
+    Duration: 74s (2s expected)
+    Message: Duration was more than expected
+ - First test in second fixture:
+    Duration: 74s (1s expected)
+    Message: Duration was more than expected
+ - Second test in second fixture:
+    Duration: 74s (1s expected)
+    Message: Duration was more than expected
