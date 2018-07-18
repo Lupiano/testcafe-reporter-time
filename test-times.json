@@ -1,14 +1,14 @@
 {
     "threshold": 15,
     
-    "First test in first fixture": 1,
-    "Second test in first fixture": 1,
-    "Third test in first fixture": 2,
+    "First test in first fixtures": 1,
+    "Second test in first fixtures": 1,
+    "Third test in first fixtures": 2,
 
-    "First test in second fixture": 1,
-    "Second test in second fixture": 1,
-    "Third test in second fixture": 2,
+    "First test in second fixtures": 1,
+    "Second test in second fixtures": 1,
+    "Third test in second fixtures": 2,
 
-    "First test in third fixture": 7
+    "First test in third fixtures": 7
 }
 

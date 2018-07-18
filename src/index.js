@@ -110,9 +110,20 @@ export default function () {
 
             this.newline();
 
-            if (!testRunInfo.skipped && !hasErr && testTimes && typeof testTimes[name] !== 'undefined') {
+            var numberPattern = /\d+/g;
+            var testNumber;
+
+            try {
+                testNumber = name.match(numberPattern)[0];
+            }
+            catch (err) {
+                testNumber = null;
+            }
+            
+
+            if (!testRunInfo.skipped && !hasErr && testTimes && testNumber && typeof testTimes[testNumber] !== 'undefined') {
                 
-                var expectedTime = testTimes[name];
+                var expectedTime = testTimes[testNumber];
 
                 if (duration > expectedTime + THRESHOLD || duration < expectedTime - THRESHOLD) {
                     var msg;

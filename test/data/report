@@ -39,17 +39,3 @@
   specified. To specify it, use the "-s" or "--screenshots" command line
   option or the "screenshots" method of the test runner in case you are using
   API.
-
- Out of time tests (4):
- - First test in first fixture:
-    Duration: 74s (1s expected)
-    Message: Duration was more than expected
- - Third test in first fixture:
-    Duration: 74s (2s expected)
-    Message: Duration was more than expected
- - First test in second fixture:
-    Duration: 74s (1s expected)
-    Message: Duration was more than expected
- - Second test in second fixture:
-    Duration: 74s (1s expected)
-    Message: Duration was more than expected
