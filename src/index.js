@@ -119,7 +119,6 @@ export default function () {
             catch (err) {
                 testNumber = null;
             }
-            
 
             if (!testRunInfo.skipped && !hasErr && testTimes && testNumber && typeof testTimes[testNumber] !== 'undefined') {
                 

@@ -1,6 +1,6 @@
 {
   "name": "testcafe-reporter-time",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "time TestCafe reporter plugin.",
   "repository": "https://github.com/llistorti/testcafe-reporter-time",
   "author": {
