@@ -1,6 +1,7 @@
-const FILE_NAME = 'test-times.json'; 
+const FILE_NAME = 'test-times'; 
 var THRESHOLD = 30;
 var testTimes = null;
+var env = null;
 
 var fs = require('fs');
 
@@ -16,18 +17,8 @@ export default function () {
 
         reportTaskStart (startTime, userAgents, testCount) {
 
-            try {
-                testTimes = JSON.parse(fs.readFileSync(FILE_NAME, 'utf8'));
-            }
-            catch (err) {
-                testTimes = null;
-            }
-
             this.startTime = startTime;
             this.testCount = testCount;
-
-            if (testTimes && typeof testTimes['threshold'] !== 'undefined')
-                THRESHOLD = this.moment(testTimes['threshold']);
 
             this.setIndent(1)
                 .useWordWrap(true)
@@ -39,13 +30,26 @@ export default function () {
                     .write(`- ${ua}`)
                     .newline();
             });
-
-            this.newline()
-                .write(`Threshold: ${THRESHOLD}s`)
-                .newline();
         },
 
         reportFixtureStart (name) {
+            
+            if (!testTimes) {
+                try {
+                    var splitedName = name.split(' ');
+
+                    env = splitedName[splitedName.length - 1];
+                    env = env.toLowerCase().replace(/\"/g, '');
+                    testTimes = JSON.parse(fs.readFileSync(`${FILE_NAME}-${env}.json`, 'utf8'));
+                }
+                catch (err) {
+                    testTimes = null;
+                }
+
+                if (testTimes && typeof testTimes['threshold'] !== 'undefined')
+                    THRESHOLD = this.moment(testTimes['threshold']);
+            }
+
             this.setIndent(1)
                 .useWordWrap(true);
 
@@ -203,9 +207,23 @@ export default function () {
 
             if (warnings.length)
                 this._renderWarnings(warnings);
+            
+            if (testTimes && env) {
+                this.newline()
+                    .write(`Taking expected times from file: ${FILE_NAME}-${env}.json`)
+                    .newline()
+                    .newline()
+                    .write(`Threshold: ${THRESHOLD}s`)
+                    .newline();
+            }
 
             if (this.outOfTimeTests.length)
                 this._renderOutOfTime();
+            else {
+                this.newline()
+                    .write(`There are no out of time tests`)
+                    .newline();
+            }
         }
     };
 }
