@@ -2,8 +2,6 @@
  - Chrome 41.0.2227 / Mac OS X 10.10.1
  - Firefox 47 / Mac OS X 10.10.1
 
- Threshold: 15s
-
  First fixture
  √ First test in first fixture (unstable) (screenshots:
  /screenshots/1445437598847) (74s)
@@ -39,3 +37,5 @@
   specified. To specify it, use the "-s" or "--screenshots" command line
   option or the "screenshots" method of the test runner in case you are using
   API.
+
+  There are no out of time tests
